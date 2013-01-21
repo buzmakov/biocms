@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row-fluid">
+
+            {% if toc['type'] == 'auto' %}
+            <div class="span3">
+                <div id="toc">
+                </div><!--/.well -->
+            </div><!--/span-->
+            {% elif toc['type'] == 'manual'%}
+                <div class="span3 bs-docs-sidebar">
+                <ul class="nav nav-list bs-docs-sidenav">
+                {{ toc['html']|safe }}
+                </ul>
+                </div>
+            {% else %}
+                <div class="span3">
+                </div><!--/span-->
+            {% endif %}
+
+        <!-- user html
+        ================================================== -->
+            <div class="span9 toc" >
+                {{ user_html|safe }}
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+    {% if toc['type'] == 'auto'%}
+    $(function() {
+
+        var toc = $("#toc").tocify({ selectors: "{{ toc['levels'] }}", showAndHide:false }).data("tocify");
+
+    });
+    {% endif %}
+</script>
+{% endblock %}
