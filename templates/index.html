@@ -36,7 +36,7 @@
     {% if toc['type'] == 'auto'%}
     $(function() {
 
-        var toc = $("#toc").tocify({ selectors: "{{ toc['levels'] }}", showAndHide:false }).data("tocify");
+        var toc = $("#toc").tocify({ selectors: "{{ toc['levels'] }}", extendPage: true}).data("tocify");
 
     });
     {% endif %}
