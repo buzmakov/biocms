@@ -15,8 +15,9 @@ def index():
 @app.route('/<path:path>')
 def pages(path):
     user_html = get_html_by_path(path)
-    toc = get_toc(path)
+    
     if not user_html is None:
+        toc = get_toc(path) 
         return render_template('index.html', main_menu=list(build_main_menu()),
                                user_html=user_html, toc=toc)
     else:
